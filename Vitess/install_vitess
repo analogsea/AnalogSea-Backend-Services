@@ -1,0 +1,3 @@
+cd "${0%/*}"
+kubectl apply -f manifests/vitess-namespace.yaml
+helm install vitess -n vitess manifests/vitess.yaml

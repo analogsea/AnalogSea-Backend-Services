@@ -1,0 +1,3 @@
+cd "${0%/*}"
+helm uninstall vitess -n vitess
+kubectl delete ns vitess
