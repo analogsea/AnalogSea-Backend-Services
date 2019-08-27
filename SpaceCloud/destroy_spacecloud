@@ -1,0 +1,4 @@
+cd "${0%/*}"
+
+kubectl delete -f spacecloud.yaml
+kubectl delete -f spacecloud-namespace.yaml

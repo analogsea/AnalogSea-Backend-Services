@@ -1,0 +1,11 @@
+apiVersion: getambassador.io/v1
+kind: Mapping
+metadata:
+  name: spacecloud-external
+  namespace: spacecloud
+spec:
+  prefix: /
+  host: "spacecloud\\..*"
+  host_regex: true
+  service: spacecloud.spacecloud:80
+  ambassador_id: ambassador-http

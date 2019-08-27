@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: spacecloud
+  namespace: spacecloud
+spec:
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+      labels:
+        app: spacecloud
+      namespace: spacecloud
+    spec:
+      containers:
+      - name: spacecloud
+        image: spaceuptech/space-cloud:latest
+        env:
+          - name: ADMIN_USER
+            value: admin
+          - name: ADMIN_PASS
+            value: password
+          - name: ADMIN_SECRET
+            value: Test1234!
+        ports:
+        - name: http
+          containerPort: 4122
+        - name: grpc
+          containerPort: 4124
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spacecloud
+  namespace: spacecloud
+spec:
+  type: ClusterIP
+  ports:
+   - port: 80
+     targetPort: 4122
+  selector:
+    app: spacecloud
